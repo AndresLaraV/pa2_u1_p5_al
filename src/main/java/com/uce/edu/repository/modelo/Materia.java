@@ -1,5 +1,8 @@
 package com.uce.edu.repository.modelo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Materia {
 
 		private String nombre;
