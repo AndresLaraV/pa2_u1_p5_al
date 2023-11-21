@@ -21,7 +21,7 @@ public class Pa2U1P5AlApplication implements CommandLineRunner{
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U1P5AlApplication.class, args);
-		
+		System.out.println();
 	}
 
 	@Override
