@@ -8,21 +8,21 @@ import org.springframework.stereotype.Repository;
 import com.uce.edu.repository.modelo.Materia;
 
 @Repository
-public class MateriaRepositoryImpl implements IMateriaRepository{
-	
-	private static List<Materia> base = new ArrayList ();
+public class MateriaRepositoryImpl implements IMateriaRepository {
+
+	private static List<Materia> base = new ArrayList();
 	
 	@Override
 	public Materia seleccionar(String codigo) {
 		// TODO Auto-generated method stub
-
-		System.out.println("Seleccionamos:" +codigo);
+		System.out.println("Seleccionamos:" + codigo);
 		
-		for (Materia mate:base) {
-			if (mate.getCodigo().equals(codigo)) {
+		for(Materia mate:base) {
+			if(mate.getCodigo().equals(codigo)) {
 				return mate;
 			}
 		}
+		
 		return null;
 	}
 
@@ -30,7 +30,7 @@ public class MateriaRepositoryImpl implements IMateriaRepository{
 	public void insertar(Materia materia) {
 		// TODO Auto-generated method stub
 		base.add(materia);
-		System.out.println("Se insertó:"+materia);
+		System.out.println("Se inserto:" + materia);
 	}
 
 	@Override
@@ -38,25 +38,21 @@ public class MateriaRepositoryImpl implements IMateriaRepository{
 		// TODO Auto-generated method stub
 		this.borrar(materia.getCodigo());
 		this.insertar(materia);
-		System.out.println("Se actualiza:"+materia);
+		System.out.println("Se actualiza:" + materia);
 	}
 
 	@Override
 	public void borrar(String codigo) {
 		// TODO Auto-generated method stub
-		
-		Materia mate=this.seleccionar(codigo);
+		Materia mate = this.seleccionar(codigo);
 		base.remove(mate);
-		
-		System.out.println("Se borra:"+codigo);
+		System.out.println("Se borra:" + codigo);
 	}
 
 	@Override
-	public List<Materia> selecionarTodos() {
-		// TODO Auto-generated method stub
+	public List<Materia> seleccionarTodos() {
+		
 		return base;
 	}
-	
-	
-	
+
 }

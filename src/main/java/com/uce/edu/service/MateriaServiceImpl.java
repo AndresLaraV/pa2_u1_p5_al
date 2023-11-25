@@ -9,7 +9,8 @@ import com.uce.edu.repository.IMateriaRepository;
 import com.uce.edu.repository.modelo.Materia;
 
 @Service
-public class MateriaImpl implements IMateriaService {
+public class MateriaServiceImpl implements IMateriaService{
+
 	@Autowired
 	private IMateriaRepository iMateriaRepository;
 	
@@ -38,9 +39,9 @@ public class MateriaImpl implements IMateriaService {
 	}
 
 	@Override
-	public List<Materia> selecionarTodos() {
+	public List<Materia> buscarTodos() {
 		// TODO Auto-generated method stub
-		return this.iMateriaRepository.selecionarTodos();
+		return this.iMateriaRepository.seleccionarTodos();
 	}
 
 }
