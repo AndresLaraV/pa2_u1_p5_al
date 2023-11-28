@@ -5,4 +5,5 @@
     <fullyQualifiedTypeName name="com.uce.edu.ioc.di.Estudiante"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="java.math.BigDecimal"/>
+    <fullyQualifiedTypeName name="com.uce.edu.repository.modelo.Materia"/>
 </qualifiedTypeNameHistroy>
