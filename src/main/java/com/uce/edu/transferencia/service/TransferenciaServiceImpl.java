@@ -88,5 +88,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 		// TODO Auto-generated method stub
 		return this.iTransferenciaRepository.seleccionarTodos();
 	}
+	
+	
  
 }

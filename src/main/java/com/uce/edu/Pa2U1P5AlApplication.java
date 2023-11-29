@@ -15,8 +15,25 @@ import com.uce.edu.transferencia.service.ITransferenciaService;
 
 @SpringBootApplication
 public class Pa2U1P5AlApplication implements CommandLineRunner {
+	
+	//Inyeccion de dependencia por atributo
 	@Autowired
 	private ITransferenciaService iTransferenciaService;
+	
+	//Inyeccion de dependencia por constructor
+	/*
+	@Autowired
+	public Pa2U1P5AlApplication(ITransferenciaService iTransferenciaServi) {
+		this.iTransferenciaService = iTransferenciaServi;
+	}*/
+	
+	/*Iyeccion de dependencia por método (set)
+	private ITransferenciaService iTransferenciaService;
+	@Autowired
+	public void setiTransferenciaService(ITransferenciaService iTransferenciaService) {
+		this.iTransferenciaService = iTransferenciaService;
+	}*/
+	
 	@Autowired
 	private ICuentaBancariaService bancariaService;
 	
@@ -47,7 +64,7 @@ public class Pa2U1P5AlApplication implements CommandLineRunner {
 		CuentaBancaria ctaDestino1 = this.bancariaService.buscar("5678");
 		System.out.println(ctaDestino1);
 		
-		this.iTransferenciaService.realizar("1234", "5678", new BigDecimal(50));
+		this.iTransferenciaService.realizar("1234", "5678", new BigDecimal(30));
 		this.iTransferenciaService.realizar("5678", "1234", new BigDecimal(10));
 		
 		
@@ -67,6 +84,7 @@ public class Pa2U1P5AlApplication implements CommandLineRunner {
 		
 		CuentaBancaria ctaDestino2 = this.bancariaService.buscar("5678");
 		System.out.println(ctaDestino2);
+		
 		}
 	}
 
