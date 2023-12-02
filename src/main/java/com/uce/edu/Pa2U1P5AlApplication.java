@@ -1,90 +1,65 @@
 package com.uce.edu;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.transferencia.repository.modelo.CuentaBancaria;
-import com.uce.edu.transferencia.repository.modelo.Transferencia;
-import com.uce.edu.transferencia.service.ICuentaBancariaService;
-import com.uce.edu.transferencia.service.ITransferenciaService;
+import com.uce.edu.inventario.repository.modelo.Bodega;
+import com.uce.edu.inventario.repository.modelo.Inventario;
+import com.uce.edu.inventario.repository.modelo.Producto;
+import com.uce.edu.inventario.service.IBodegaService;
+import com.uce.edu.inventario.service.IInventarioService;
+import com.uce.edu.inventario.service.IProductoService;
 
 @SpringBootApplication
 public class Pa2U1P5AlApplication implements CommandLineRunner {
-	
-	//Inyeccion de dependencia por atributo
+
 	@Autowired
-	private ITransferenciaService iTransferenciaService;
-	
-	//Inyeccion de dependencia por constructor
-	/*
+	private IInventarioService InventarioService;
+
 	@Autowired
-	public Pa2U1P5AlApplication(ITransferenciaService iTransferenciaServi) {
-		this.iTransferenciaService = iTransferenciaServi;
-	}*/
-	
-	/*Iyeccion de dependencia por método (set)
-	private ITransferenciaService iTransferenciaService;
+	private IBodegaService bodegaService;
+
 	@Autowired
-	public void setiTransferenciaService(ITransferenciaService iTransferenciaService) {
-		this.iTransferenciaService = iTransferenciaService;
-	}*/
-	
-	@Autowired
-	private ICuentaBancariaService bancariaService;
-	
+	private IProductoService iProductoService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U1P5AlApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		CuentaBancaria ctaOrigen = new CuentaBancaria();
-		ctaOrigen.setCedulaPropietario("1722121835");
-		ctaOrigen.setSaldo(new BigDecimal(100));
-		ctaOrigen.setNumero("1234");
-		this.bancariaService.guardar(ctaOrigen);
-		
-		CuentaBancaria ctaDestino = new CuentaBancaria();
-		ctaDestino.setCedulaPropietario("1704983491");
-		ctaDestino.setSaldo(new BigDecimal(200));
-		ctaDestino.setNumero("5678");
-		this.bancariaService.guardar(ctaDestino);
-		
-		this.iTransferenciaService.realizar("1234", "5678", new BigDecimal(10));
-		
-		CuentaBancaria ctaOrigen1 = this.bancariaService.buscar("1234");
-		System.out.println(ctaOrigen1);
-		
-		CuentaBancaria ctaDestino1 = this.bancariaService.buscar("5678");
-		System.out.println(ctaDestino1);
-		
-		this.iTransferenciaService.realizar("1234", "5678", new BigDecimal(30));
-		this.iTransferenciaService.realizar("5678", "1234", new BigDecimal(10));
-		
-		
-		
-		 List<Transferencia> lista = this.iTransferenciaService.buscarTodos();
- 
-		
-		int indice = 0;
-		for (Transferencia trans:lista) {
-			indice++;
-			System.out.println(indice+ ": "+trans);
-		}
-		
-		
-		CuentaBancaria ctaOrigen2 = this.bancariaService.buscar("1234");
-		System.out.println(ctaOrigen2);
-		
-		CuentaBancaria ctaDestino2 = this.bancariaService.buscar("5678");
-		System.out.println(ctaDestino2);
-		
-		}
-	}
 
+		Producto p1 = new Producto();
+		p1.setCodigoBarras("P1");
+		p1.setNombre("HP");
+		p1.setStock(0);
+		this.iProductoService.insertar(p1);
+
+		Producto p2 = new Producto();
+		p2.setCodigoBarras("P2");
+		p2.setNombre("Lenovo");
+		p2.setStock(0);
+		this.iProductoService.insertar(p2);
+
+		Bodega bod = new Bodega();
+		bod.setCapacidad(100);
+		bod.setCodigo("B1");
+		bod.setDireccion("Calderon");
+		bod.setNombre("Bodega Don Fenix");
+		this.bodegaService.guardar(bod);
+
+		Inventario inv1 = new Inventario();
+		inv1.setCodigo("555555");
+		this.InventarioService.registrar("P1", "B1", 50);
+		
+		Inventario inv2 = new Inventario();
+		inv2.setCodigo("555555");
+		this.InventarioService.registrar("P1", "B1", 100);
+		
+		Inventario inv3 = new Inventario();
+		inv3.setCodigo("555555");
+		this.InventarioService.registrar("P1", "B1", 20);
+	}
+}
